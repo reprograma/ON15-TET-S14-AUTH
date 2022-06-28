@@ -4,35 +4,35 @@ const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const SECRET = process.env.SECRET;
 
-// const getAll = async (req, res) => {
-//   UserSchema.find(function (err, users) {
-//     if (err) {
-//       res.status(500).send({ message: err.message })
-//     }
-//     res.status(200).send(users)
-//   })
-// };
-
 const getAll = async (req, res) => {
-  const authHeader = req.get('authorization')
-  const token = authHeader.split(' ')[1];
-
-  if (!token) {
-    return res.status(401).send("Erro no header")
-  }
-  
-  jwt.verify(token, SECRET, function(erro) {
-    if (erro) {
-      return res.status(403).send('Não autorizado');
-  }
-  })
   UserSchema.find(function (err, users) {
-    if(err) {
+    if (err) {
       res.status(500).send({ message: err.message })
     }
-      res.status(200).send(users)
-  }) 
-}
+    res.status(200).send(users)
+  })
+};
+
+// const getAll = async (req, res) => {
+//   const authHeader = req.get('authorization')
+//   const token = authHeader.split(' ')[1];
+
+//   if (!token) {
+//     return res.status(401).send("Erro no header")
+//   }
+  
+//   jwt.verify(token, SECRET, function(erro) {
+//     if (erro) {
+//       return res.status(403).send('Não autorizado');
+//   }
+//   })
+//   UserSchema.find(function (err, users) {
+//     if(err) {
+//       res.status(500).send({ message: err.message })
+//     }
+//       res.status(200).send(users)
+//   }) 
+// }
 
 
 const createNewUser = async (req, res) => {
@@ -58,17 +58,17 @@ const createNewUser = async (req, res) => {
       }
     }
 
-    if (email) {
-      const findAll = await UserSchema.find({ email: email })
+    
+      const findAll = await UserSchema.exists({ email: email })
 
-      if (findAll.length != 0) {
+      if (findAll) {
         throw {
           statusCode: 406,
           message: "Não foi possível cadastrar novo usuário",
           details: "Já existe um cadastro com o email: " + email
         }
       }
-    }
+    
     
     const hashedPassword = bcrypt.hashSync(password, 10)
     password = hashedPassword
@@ -98,7 +98,71 @@ const createNewUser = async (req, res) => {
   }
 }
 
+const updateUser = async (request, response) => {
+  let {email, password } = request.body
+
+  try {
+      const findUser = await UserSchema.findOne({email:email})
+
+      if (!findUser) {
+          throw {
+              statusCode: 404,
+              message: "Usuário não localizado",
+              query: email
+          }
+      }
+
+      const hashedPassword = bcrypt.hashSync(password, 10)
+    password = hashedPassword
+
+      findUser.password = password || findRestaurant.password
+      
+
+      const savedUser= await findUser.save()
+
+      response.status(200).json({
+          "Usuário atualizado": savedUser
+      })
+      
+  } catch (error) {
+      if (error.statusCode) {
+          response.status(error.statusCode).json(error)
+      } else {
+          response.status(500).json({ message: error.message })
+      }
+
+  
+  }
+}
+
+const deleteById = async (request, response) => {
+  const {email} = request.body
+  try {
+
+    const findUser = await UserSchema.findOne({email: email})
+
+      
+      const deletedUser = await UserSchema.findByIdAndDelete(findUser._id)
+
+    
+        response.status(200).json([{
+              "mensagem": "Item deletado com sucesso",
+              "item deletado": deletedUser}])
+      
+  } catch (error) {
+      if (error.statusCode) {
+          response.status(error.statusCode).json(error)
+      } else {
+          response.status(500).json({ message: error.message })
+      }
+
+  }
+}
+
+
 module.exports = {
   getAll,
-  createNewUser
+  createNewUser,
+  updateUser,
+  deleteById
 };
