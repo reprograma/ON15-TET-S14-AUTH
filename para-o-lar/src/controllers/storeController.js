@@ -1,4 +1,4 @@
-const StoreSchema = require("../models/storesSchema")
+const StoreSchema = require("../models/storeSchema")
 
 const findAll = async(req, res) => {
     try {
