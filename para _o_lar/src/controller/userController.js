@@ -1,5 +1,6 @@
 const UserSchema = require("../model/userSchema");
 const bcrypt = require("bcrypt");
+const userSchema = require("../model/userSchema");
 
 const getAll = async (req, res) => {
   UserSchema.find(function (err, users) {
@@ -37,8 +38,51 @@ const createUser = async (req, res) => {
       res.status(500).send({ message: error.message });
     }
   }
+
+const updateUser = async (request, response) => {
+    try {
+
+        const findUser = await userSchema.findById(request.params.id) 
+
+        if(!findUser){
+            response.status(404).json({
+                "mensagem": "id não encontrado"
+            })
+        }
+
+        findUser.email = request.body.email || findUser.email
+        findUser.password = request.body.password || findUser.password
+        
+        const saveUser = await findUser.save()
+        
+        response.status(200).json({
+            "message": "Atualização realizada com sucesso:",
+            saveUser})
+
+    } catch (error) {
+        response.status(500).json({ message: error.message })
+    }
+}
+
+
+const deleteUser = async (request, response) => {
+    try {
+        const findUser = await userSchema.findByIdAndDelete(request.params.id) 
+
+    
+        response.status(200).json({
+            "message": "Usuário deletado com sucesso:",
+            findUser})
+        
+    } catch (error) {
+        response.status(500).json({ message: error.message })
+        
+    }
+}
   
 module.exports = {
   getAll,
-  createUser
+  createUser,
+  updateUser,
+  deleteUser
 };
