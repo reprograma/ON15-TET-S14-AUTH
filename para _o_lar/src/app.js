@@ -8,4 +8,7 @@ app.use(cors())
 app.use(express.json())
 require('dotenv-safe').config()
 
+const db = require('./database/mongoConnect')
+db.connect()
+
 module.exports = app
