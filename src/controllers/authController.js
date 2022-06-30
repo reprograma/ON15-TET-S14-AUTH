@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 
 const SECRET = process.env.SECRET;
 
+// login = autenticação
 const login = (req, res) => {
     try {
         // UserSchema.findOne(filtro é o email do usuario, função anônima)
@@ -23,9 +24,10 @@ const login = (req, res) => {
 
             if(!validPassword) {
                 return res.status(401).send({
-                    "message": "Login não autorizado"
+                    "message": "Login não autorizado",
+                    "statusCode": 401
                 })
-              }
+            }
 
             // jwt.sign(nome do usuário, SEGREDO)
             const token = jwt.sign({name: user.name}, SECRET);
