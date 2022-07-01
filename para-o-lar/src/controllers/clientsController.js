@@ -25,7 +25,7 @@ const createClient = async(req, res) => {
     }
 }
 
-/* const findAll = async(req, res) => {
+const findAll = async(req, res) => {
     try {
         const allClients = await clientSchema.find()
         res.status(200).json(allClients)
@@ -33,7 +33,7 @@ const createClient = async(req, res) => {
         console.error(error)
         res.status(500).json({message: error.message})
     }
-} */
+}
 
 /* const findById = async(req, res) => {
     try {
@@ -64,7 +64,7 @@ const createClient = async(req, res) => {
 
 module.exports = {
     createClient,
-    // findAll,
+    findAll,
     // findById,
     // findByOrderId
 }
