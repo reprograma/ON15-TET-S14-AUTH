@@ -51,6 +51,18 @@ const findById = async(req, res) => {
     }
 }
 
+const updateClient = async(req, res) => {
+    try {
+        const { name, socialName, address, number, phone, referencePoint } = req.body
+        const updatedClient = await clientSchema.findByIdAndUpdate(req.params.id, { name, socialName, address, number, phone, referencePoint, updatedAt: new Date().toLocaleDateString() }, { new: true })
+        res.status(200).json(updatedClient)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({message: error.message})
+    }
+}
+
+
 /* const findByOrderId = async(req, res) => {
     try {
        const findOrder = await clientSchema.findById({orders:{_orderId: req.params.id}})
@@ -66,5 +78,6 @@ module.exports = {
     createClient,
     findAll,
     findById,
+    updateClient
     // findByOrderId
 }
