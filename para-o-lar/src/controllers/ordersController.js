@@ -20,6 +20,35 @@ const createOrder = async(req, res) => {
     }
 }
 
+const getAllOrders = async(req, res) => {
+    try {
+        const allOrders = await orderSchema.find().populate('client')
+        res.status(200).json(allOrders)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({message: error.message})
+    }
+}
+
+/* const findById = async(req, res) => {
+    try {
+        await orderSchema.findById(req.params.id).populate('client').exec((err, stores) => {
+            if (err) {
+              return res.status(400).send({ message: `${err.message} - Id informado está fora do padrão.` });
+            } else if (stores == null) {
+              return res.status(404).send('Id não encontrado na base de dados');
+            } else {
+              return res.status(200).send(stores);
+            }
+          })
+    } catch (error) {
+        res.status(500).json({message: error.message})
+    }
+} */
+
+
 module.exports = {
-    createOrder
+    createOrder,
+    getAllOrders,
+    // findById
 }
