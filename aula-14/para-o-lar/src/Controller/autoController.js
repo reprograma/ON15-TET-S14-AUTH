@@ -1,4 +1,4 @@
-const userSchema = require('../models/userSchema');
+const admSchema = require('../Model/admSchema');
 const bcrypt = require("bcrypt");
 const jwt = require ("jsonwebtoken")
 
@@ -6,15 +6,15 @@ const SECRET = process.env.SECRET;
 const login = (request, response) => {
     try {
         // UserSchema.findOne(filtro é o email do usuario, função anônima)
-        userSchema.findOne({ email: request.body.email }, (error, user) => {
-            console.log("USUÁRIO", user)
-            if(!user) {
+        admSchema.findOne({ email: request.body.email }, (error, adm) => {
+            console.log("USUÁRIO", adm)
+            if(!adm) {
                 return response.status(401).send({
-                    message: "User não encontrado",
+                    message: "Adm não encontrado",
                     email: `${request.body.email}`
                 })
             }
-            const validPassword = bcrypt.compareSync(request.body.password, user.password);
+            const validPassword = bcrypt.compareSync(request.body.password, adm.password);
             console.log(validPassword)
 
 	  if(!validPassword) {
@@ -22,7 +22,7 @@ const login = (request, response) => {
      		   message: "Login não autorizado"
    		 })
  	  }
-     const token = jwt.sign({name: user.name}, SECRET)
+     const token = jwt.sign({name: adm.name}, SECRET)
      console.log("Token Criado", token);
      response.status(200).send({
         "message": "Login autorizado",
@@ -37,4 +37,3 @@ const login = (request, response) => {
 module.exports = {
     login
 };
-
