@@ -1,11 +1,11 @@
-# <div align = "center"> ON15-TET-S13-PG-III </div>
+# <div align = "center"> ON15-TET-S14-AUTH </div>
 
 
 
 
 <div align = "center">
     <p>
-        Turma Online Todas em Tech - Back-end | Semana 13: Projeto Guiado - <b>CRUD com BD</b>.
+        Turma Online Todas em Tech - Back-end | Semana 14: Aplicar Autenticação // Conhecer Autorização: <b>JWT</b>.
     </p>
 </div>
 
@@ -20,7 +20,7 @@
 
 <div align = "justify">
 
-Para esse projeto foi criada uma Web API com o tema: [restaurantes](https://github.com/BrunaCelestino/ON15-TET-S13-PG-III/tree/BrunaCelestino/para-o-lar/reprograma-food) encontrados na plataforma Ifood. Todos os restaurantes contidos nesse projeto, bem como suas respectivas informações, são reais e estão localizados na cidade de Jacareí - SP. Para armazenamento das informações, foi utilizado o banco de dados MongoDB.   
+Para esse projeto foi criada uma Web API com o tema: [restaurantes](https://github.com/BrunaCelestino/ON15-TET-S14-AUTH/tree/BrunaCelestino/para-o-lar/reprograma-food) encontrados na plataforma Ifood. Todos os restaurantes contidos nesse projeto, bem como suas respectivas informações, são reais e estão localizados na cidade de Jacareí - SP. Para armazenamento das informações, foi utilizado o banco de dados MongoDB.   
 
 <br>
 
@@ -63,6 +63,8 @@ O servidor, criado dentro da pasta [reprograma-food]https://github.com/BrunaCele
                     |
                     📂---controllers
                     |
+                    |   authController.js
+                    |   userController.js
                     |   restaurantesController.js
                     |   menuController.js
                     |
@@ -73,34 +75,42 @@ O servidor, criado dentro da pasta [reprograma-food]https://github.com/BrunaCele
                     |   mongoConfig.js
                     |   
                     |
+                     📂---middlewares
+                    |
+                    |   auth.js
+                    |
+                    |
                     📂---models
                     |
                     |   MenuSchema.js
-                    |   RestauranteSchema.json
-                    |
+                    |   RestauranteSchema.js
+                    |   userSchema.js
                     |
                     📂---routes
                     |
                     |   menuRoutes.js
-                    |   restaurantesRoutes.js  			      
+                    |   restaurantesRoutes.js 
+                    |   userRoutes.js 			      
 
  ```
 
 <div align = "justify">
 
-- [server.js](https://github.com/BrunaCelestino/ON15-TET-S13-PG-III/blob/BrunaCelestino/para-o-lar/reprograma-food/server.js) - Define onde o servidor local irá ser executado;
+- [server.js](https://github.com/BrunaCelestino/ON15-TET-S14-AUTH/blob/BrunaCelestino/para-o-lar/reprograma-food/server.js) - Define onde o servidor local irá ser executado;
 
-- [app.js](https://github.com/BrunaCelestino/ON15-TET-S13-PG-III/blob/BrunaCelestino/para-o-lar/reprograma-food/src/app.js) - Requere as dependências necessárias para o projeto e define o padrão de cada rota;
+- [app.js](https://github.com/BrunaCelestino/ON15-TET-S14-AUTH/blob/BrunaCelestino/para-o-lar/reprograma-food/src/app.js) - Requere as dependências necessárias para o projeto e define o padrão de cada rota;
 
-- [controllers](https://github.com/BrunaCelestino/ON15-TET-S13-PG-III/tree/BrunaCelestino/para-o-lar/reprograma-food/src/controllers) - pasta contendo os arquivos: [restaurantesController.js](https://github.com/BrunaCelestino/ON15-TET-S13-PG-III/blob/BrunaCelestino/para-o-lar/reprograma-food/src/controllers/restaurantesController.js) e [menuController.js](https://github.com/BrunaCelestino/ON15-TET-S13-PG-III/blob/BrunaCelestino/para-o-lar/reprograma-food/src/controllers/menuController.js), que definem, em fuções, o que cada rota deve realizar;
+- [controllers](https://github.com/BrunaCelestino/ON15-TET-S14-AUTH/tree/BrunaCelestino/para-o-lar/reprograma-food/src/controllers) - pasta contendo os arquivos: [restaurantesController.js](https://github.com/BrunaCelestino/ON15-TET-S14-AUTH/blob/BrunaCelestino/para-o-lar/reprograma-food/src/controllers/restaurantesController.js) e [menuController.js](https://github.com/BrunaCelestino/ON15-TET-S14-AUTH/blob/BrunaCelestino/para-o-lar/reprograma-food/src/controllers/menuController.js), que definem, em fuções, o que cada rota deve realizar. [authController.js](https://github.com/BrunaCelestino/ON15-TET-S14-AUTH/blob/BrunaCelestino/para-o-lar/reprograma-food/src/controllers/authController.js), que permite que o usuário faça login e [userController.js](https://github.com/BrunaCelestino/ON15-TET-S14-AUTH/blob/BrunaCelestino/para-o-lar/reprograma-food/src/controllers/userController.js), que possui funções de criação de usuário, e outras funções relacionadas a ele, como deletar, atualizar e encontrar. 
      
-- [models](https://github.com/BrunaCelestino/ON15-TET-S13-PG-III/tree/BrunaCelestino/para-o-lar/reprograma-food/src/models)- pasta contendo os aquivos: [RestauranteSchema.js](https://github.com/BrunaCelestino/ON15-TET-S13-PG-III/blob/BrunaCelestino/para-o-lar/reprograma-food/src/models/RestauranteSchema.js) e [MenuSchema.js](https://github.com/BrunaCelestino/ON15-TET-S13-PG-III/blob/BrunaCelestino/para-o-lar/reprograma-food/src/models/MenuSchema.js), que contêm a formatação que os restaurantes e cardápios devem seguir; 
+- [models](https://github.com/BrunaCelestino/ON15-TET-S14-AUTH/tree/BrunaCelestino/para-o-lar/reprograma-food/src/models)- pasta contendo os aquivos: [userSchema.js](https://github.com/BrunaCelestino/ON15-TET-S14-AUTH/blob/BrunaCelestino/para-o-lar/reprograma-food/src/models/userSchema.js), [RestauranteSchema.js](https://github.com/BrunaCelestino/ON15-TET-S14-AUTH/blob/BrunaCelestino/para-o-lar/reprograma-food/src/models/RestauranteSchema.js) e [MenuSchema.js](https://github.com/BrunaCelestino/ON15-TET-S14-AUTH/blob/BrunaCelestino/para-o-lar/reprograma-food/src/models/MenuSchema.js), que contêm a formatação que os usuários, restaurantes e cardápios devem seguir; 
 
-- [routes](https://github.com/BrunaCelestino/ON15-TET-S13-PG-III/tree/BrunaCelestino/para-o-lar/reprograma-food/src/routes) - pasta contendo os arquivos: [restaurantesRoutes.js](https://github.com/BrunaCelestino/ON15-TET-S13-PG-III/blob/BrunaCelestino/para-o-lar/reprograma-food/src/routes/restaurantesRoutes.js) e [menuRoutes.js](https://github.com/BrunaCelestino/ON15-TET-S13-PG-III/blob/BrunaCelestino/para-o-lar/reprograma-food/src/routes/menuRoutes.js). Esses arquivos acrescentam os complementos às rotas genéricas, fazendo com que elas se tornem completas e possam ser acessadas; 
+- [routes](https://github.com/BrunaCelestino/ON15-TET-S14-AUTH/tree/BrunaCelestino/para-o-lar/reprograma-food/src/routes) - pasta contendo os arquivos: [restaurantesRoutes.js](https://github.com/BrunaCelestino/ON15-TET-S14-AUTH/blob/BrunaCelestino/para-o-lar/reprograma-food/src/routes/restaurantesRoutes.js), [menuRoutes.js](https://github.com/BrunaCelestino/ON15-TET-S14-AUTH/blob/BrunaCelestino/para-o-lar/reprograma-food/src/routes/menuRoutes.js), [userRoutes.js](https://github.com/BrunaCelestino/ON15-TET-S14-AUTH/blob/BrunaCelestino/para-o-lar/reprograma-food/src/routes/userRoutes.js). Esses arquivos acrescentam os complementos às rotas genéricas, fazendo com que elas se tornem completas e possam ser acessadas; 
 
-- [database](https://github.com/BrunaCelestino/ON15-TET-S13-PG-III/tree/BrunaCelestino/para-o-lar/reprograma-food/src/database) - pasta contendo o arquivo: [mongoConfig.js](https://github.com/BrunaCelestino/ON15-TET-S13-PG-III/blob/BrunaCelestino/para-o-lar/reprograma-food/src/database/mongoConfig.js). Esse arquivo faz a conexão com o banco de dados; 
+- [database](https://github.com/BrunaCelestino/ON15-TET-S14-AUTH/tree/BrunaCelestino/para-o-lar/reprograma-food/src/database) - pasta contendo o arquivo: [mongoConfig.js](https://github.com/BrunaCelestino/ON15-TET-S14-AUTH/blob/BrunaCelestino/para-o-lar/reprograma-food/src/database/mongoConfig.js). Esse arquivo faz a conexão com o banco de dados; 
 
-- Outros arquivos e pastas - pasta [assets](https://github.com/BrunaCelestino/ON15-TET-S13-PG-III/blob/BrunaCelestino/para-o-lar/reprograma-food/assets), que contém o logo do projeto, package-lock.json e package.json. que são arquivos relacionados a dependências, .env.example, que informa quais chaves são necessárias para rodar o projeto, .gitignore, informando ao projeto quais arquivos ele não deve fazer upload e README.md, contendo a documentação do projeto.
+-[middlewares](https://github.com/BrunaCelestino/ON15-TET-S14-AUTH/tree/BrunaCelestino/para-o-lar/reprograma-food/src/middlewares), contendo o arquivo [auth.js](https://github.com/BrunaCelestino/ON15-TET-S14-AUTH/blob/BrunaCelestino/para-o-lar/reprograma-food/src/middlewares/auth.js), que serve como um meio de garantir que as rotas só possam ser acessadas se o usuário inserir seu token de autorização. 
+
+- Outros arquivos e pastas - pasta [assets](https://github.com/BrunaCelestino/ON15-TET-S14-AUTH/tree/BrunaCelestino/para-o-lar/reprograma-food/assets), que contém o logo do projeto, package-lock.json e package.json. que são arquivos relacionados a dependências, .env.example, que informa quais chaves são necessárias para rodar o projeto, .gitignore, informando ao projeto quais arquivos ele não deve fazer upload e README.md, contendo a documentação do projeto.
 
 </div>
 
@@ -111,6 +121,7 @@ O servidor, criado dentro da pasta [reprograma-food]https://github.com/BrunaCele
 
 Através de uma busca realizada na plataforma Ifood, foram selecionados 10 restaurantes, para serem inseridos na API **{reprograma}food**. Cada restaurante foi cadastrado, preenchendo informações como nome, avaliação por estrelas, descrição sobre o estabelecimento, endereço, telefone, quais as especialidades do restaurante, bem como o tipo de serviço que o mesmo oferece: delivery, presencial ou retirada.   
 Além disso, o cadastro conta com o horário de funcionamento, o tempo de entrega máximo, os meios de pagamento aceitos, taxa de entrega, perfil no Ifood e um cardápio contendo o nome dos pratos, os ingredientes contidos neles e o preço de cada um. Cada restaurante e cardápio são ordenados por um **id** único.  
+Por último, foi feito o cadastro dos usuários, organizado por um **id** único, contém nome, senha, que foi criptografada, após cadastro, email e o nível de autorização que cada usuário possui. O objetivo dessa semana é implementar a criptografia das senhas dos usuários e a autorização, feita através da criação de um token de acesso. 
   
 
 <div align = "center"> Exemplo de um restaurante cadastrado:  
@@ -365,6 +376,24 @@ Além disso, o cadastro conta com o horário de funcionamento, o tempo de entreg
 ```
 </div>
 
+<div align = "center"> Exemplo de um usuário cadastrado:  
+
+
+</div>
+
+```json
+{
+            "_id": "62be6abfd9d58011b67b09aa",
+            "name": "Bruna Celestino",
+            "email": "brunaccelestino@gmail.com",
+            "password": "$2b$10$G6BTNuoBDIBTIoylzJoXkuWK2SNyc6uX8NVE5uIIJt/sFRseXScf6",
+            "role": "admin",
+            "createdAt": "Fri Jul 01 2022 00:31:31 GMT-0300 (Horário Padrão de Brasília)",
+            "__v": 0
+}
+```
+
+
 <div align = "justify">
 
 Após o término da fase de pesquisa e indexação dos restaurantes, foram desenvolvidas as lógicas necessárias para o funcionamento dos métodos, contidas dentro de funções. A cada função, um tratamento de erro foi criado por método **try-catch**, e os devidos status aplicados. Dentre os casos positivos, temos o status ***200*** indicando sucesso e ***201***, indicando que um item foi criado. Dentre os erros, podemos destacar o ***404***, onde um item não pode ser encontrado, ***406***, onde o request não é aceitado e ***500***, indicando erro interno do servidor.  
@@ -482,6 +511,69 @@ Com as lógicas contruídas, a próxima etapa foi a criação das seguintes rota
 |  Método  |                  Rota                       |                                Descrição                     |
 | :------: | :-------------------------------------:     | :-------------------------------------------------------:    |
 |  `POST`  |     localhost:8099/menus/new         |                    Cadastrar novo cardápio                |
+
+<br>
+</div>
+
+## Usuário:
+####  Método GET: 
+
+<div align = "center">
+
+|  Método  |                  Rota                       |                                Descrição                     |
+| :------: | :-------------------------------------:     | :-------------------------------------------------------:    |
+|  `GET`   | localhost:8099/users/all           |                            Lista de todos os usuários    |
+|  `GET`   | localhost:8099/users/user/:id       |                                      Busca usuário por ID            |
+
+<br>
+</div>
+
+
+####  Método PUT: 
+
+<div align = "center">
+
+|  Método  |                  Rota                       |                                Descrição                     |
+| :------: | :-------------------------------------:     | :-------------------------------------------------------:    |
+|   `PUT`  |  localhost:8099/users/update-user/:id     |    Atualizar usuário por ID                |
+
+<br>
+</div>
+
+
+####  Método DELETE: 
+
+<div align = "center">
+
+|  Método  |                  Rota                       |                                Descrição                     |
+| :------: | :-------------------------------------:     | :-------------------------------------------------------:    |
+| `DELETE` |  localhost:8099/users/delete/:id     |                   Deletar usuário por ID                 |
+
+<br>
+</div>
+
+
+
+####  Método POST:
+
+<div align = "center">
+
+|  Método  |                  Rota                       |                                Descrição                     |
+| :------: | :-------------------------------------:     | :-------------------------------------------------------:    |
+|  `POST`  |     localhost:8099/users/signup         |                    Cadastrar novo usuário               |
+|  `POST`  |     localhost:8099/users/login        |                    Fazer login              |
+
+<br>
+</div>
+
+####  Método PATCH:
+
+<div align = "center">
+
+|  Método  |                  Rota                       |                                Descrição                     |
+| :------: | :-------------------------------------:     | :-------------------------------------------------------:    |
+|  `PATCH`  |     localhost:8099/users/update-password/:id       |                    Atualizar senha               |
+
 
 <br>
 </div>
@@ -806,6 +898,66 @@ Com essa rota, é possível criar um novo cardápio, através do body request, d
 
 </div>
 
+###  FUNCIONAMENTO: Usuário
+
+<div align = "justify">
+
+1. `GET`: localhost:8099/users/all  
+Com essa rota, é possível se ter acesso a todos os usuários cadastrados, onde é requerido autorização para se ter acesso. Essa autorização é passada através do header, com um token.  
+<br>
+
+</div>
+
+<div align = "justify">
+
+2. `GET`: localhost:8099/users/user/:id  
+Com essa rota, é possível se ter acesso a um usuário, por ID, onde é requerido autorização para se ter acesso. Essa autorização é passada através do header, com um token.  
+<br>
+
+</div>
+
+
+<div align = "justify">
+
+3. `PUT`: localhost:8099/users/update-user/:id  
+Com essa rota, é possível atualizar um usuário, por ID, onde é requerido autorização para se ter acesso. Essa autorização é passada através do header, com um token.  
+<br>
+
+</div>
+
+<div align = "justify">
+
+4. `PUT`: localhost:8099/users/delete/:id  
+Com essa rota, é possível deletar um usuário, por ID, onde é requerido autorização para se ter acesso. Essa autorização é passada através do header, com um token.  
+<br>
+
+</div>
+
+<div align = "justify">
+
+5. `POST`: localhost:8099/users/signup 
+Com essa rota, é possível criar um usuário. Ao ser criado a conta, a senha será encriptada. 
+<br>
+
+</div>
+
+<div align = "justify">
+
+6. `POST`: localhost:8099/users/login 
+Com essa rota, é possível fazer login, utilizando e-mail e senha. Ao ser feito login, será recebido o token de autorização.
+<br>
+
+</div>
+
+<div align = "justify">
+
+7. `PATCH`: localhost:8099/users/update-password/:id 
+Com essa rota, é possível atualizar a senha de um usuário, por ID, onde é requerido autorização para se ter acesso. Essa autorização é passada através do header, com um token. 
+<br>
+
+</div>
+
+
 ##  INFORMAÇÕES TÉCNICAS 
 ### DEPENDÊNCIAS:
 
@@ -824,13 +976,16 @@ Para que fosse possível a execução desse projeto, foi necessária a utilizaç
 
 - [Nodemon](https://www.npmjs.com/package/nodemon) - ajuda no desenvolvimento de sistemas com o Node. js reiniciando automaticamente o servidor;
 
-- [Cors](https://www.npmjs.com/package/cors) - permite que um site acesse recursos de outro site mesmo estando em domínios diferentes.
+- [Cors](https://www.npmjs.com/package/cors) - permite que um site acesse recursos de outro site mesmo estando em domínios diferentes;
 
-- [dotenv-safe](https://www.npmjs.com/package/dotenv-safes) - garante que todas as variáveis de ambiente necessárias sejam definidas depois de lidas no arquivo .env.
+- [dotenv-safe](https://www.npmjs.com/package/dotenv-safes) - garante que todas as variáveis de ambiente necessárias sejam definidas depois de lidas no arquivo .env;
 
-- [mongoose](https://www.npmjs.com/package/mongoose) - Mongoose é uma ferramenta de modelagem de objetos MongoDB projetada para funcionar em um ambiente assíncrono.
+- [mongoose](https://www.npmjs.com/package/mongoose) - Mongoose é uma ferramenta de modelagem de objetos MongoDB projetada para funcionar em um ambiente assíncrono;
 
+- [bcrypt](https://www.npmjs.com/package/bcrypt) - Bcrypt é uma biblioteca que auxiliar na encriptação (hasheamento) de senhas.
 
+- [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) - Jsonwebtoken implementa Json web tokens. 
+   
  <br>
 
 </div>
@@ -839,13 +994,13 @@ Para que fosse possível a execução desse projeto, foi necessária a utilizaç
 
 <div align = "justify">
 
-- [package-lock.json](https://github.com/BrunaCelestino/ON15-TET-S13-PG-III/blob/BrunaCelestino/para-o-lar/reprograma-food/package-lock.json) - especifica a versão e suas dependências;
+- [package-lock.json](https://github.com/BrunaCelestino/ON15-TET-S14-AUTH/blob/BrunaCelestino/para-o-lar/reprograma-food/package-lock.json) - especifica a versão e suas dependências;
 
 
-- [package.json](https://github.com/BrunaCelestino/ON15-TET-S13-PG-III/blob/BrunaCelestino/para-o-lar/reprograma-food/package.json) - arquivo de configuração utilizado para estipular e configurar dependências;
+- [package.json](https://github.com/BrunaCelestino/ON15-TET-S14-AUTH/blob/BrunaCelestino/para-o-lar/reprograma-food/package.json) - arquivo de configuração utilizado para estipular e configurar dependências;
 
 
-- [.gitignore](https://github.com/BrunaCelestino/ON15-TET-S13-PG-III/blob/BrunaCelestino/para-o-lar/reprograma-food/.gitignore) - arquivo que lista quais arquivos ou pastas o Git deve ignorar.
+- [.gitignore](https://github.com/BrunaCelestino/ON15-TET-S14-AUTH/blob/BrunaCelestino/para-o-lar/reprograma-food/.gitignore) - arquivo que lista quais arquivos ou pastas o Git deve ignorar.
 <br>
 
 </div>
@@ -857,7 +1012,7 @@ Para que fosse possível a execução desse projeto, foi necessária a utilizaç
 1. Entre na pasta onde você deseja clonar o repositório. Abra o **git** nela e digite: 
 
     ```bash
-    $ git clone https://github.com/BrunaCelestino/ON15-TET-S13-PG-III.git
+    $ git clone https://github.com/BrunaCelestino/ON15-TET-S14-AUTH.git
      ```
 
 2. Digite a linha abaixo para entrar na branch correta: 
@@ -892,13 +1047,13 @@ Para que fosse possível a execução desse projeto, foi necessária a utilizaç
 
 ###  TESTE: 
 
-- Importe a coleção para teste deste servidor clicando [aqui](https://www.getpostman.com/collections/21a7cd68f09183415bbf)!
+- Importe a coleção para teste deste servidor clicando [aqui]https://www.getpostman.com/collections/8bf6ca3490ea774a08db)!
 
 - Copie o link acima e, no Postman, clique em **Import** -> **Link** (cole o link) -> **Continue** -> **Import**.
 
 <br>
 
-- Ou forke diretamente para o seu Postman clicando: <br> [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/20977023-51557cb5-edd6-49a8-a4db-1d2ab167dc96?action=collection%2Ffork&collection-url=entityId%3D20977023-51557cb5-edd6-49a8-a4db-1d2ab167dc96%26entityType%3Dcollection%26workspaceId%3D51132679-d0d9-4dec-aba4-1ccdfced55c7)
+- Ou forke diretamente para o seu Postman clicando: <br> [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/20977023-ad9e3e45-03b8-4b01-a72c-5c4586fb5b5a?action=collection%2Ffork&collection-url=entityId%3D20977023-ad9e3e45-03b8-4b01-a72c-5c4586fb5b5a%26entityType%3Dcollection%26workspaceId%3D51132679-d0d9-4dec-aba4-1ccdfced55c7)
 
 
 </div>
