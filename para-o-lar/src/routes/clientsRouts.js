@@ -6,6 +6,6 @@ router.post("/create", controller.createClient)
 router.get("/all", controller.findAll)
 router.get("/id/:id", controller.findById)
 router.put("/update/:id", controller.updateClient)
-// router.delete("/delete/:id", controller.deleteStore)
+router.delete("/delete/:id", controller.deleteClient)
 
 module.exports = router

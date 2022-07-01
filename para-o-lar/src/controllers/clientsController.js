@@ -62,6 +62,15 @@ const updateClient = async(req, res) => {
     }
 }
 
+const deleteClient = async(req, res) => {
+    try {
+        const deletedClient = await clientSchema.findByIdAndDelete(req.params.id)
+        res.status(200).json(deletedClient)
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({message: error.message})
+    }
+}
 
 /* const findByOrderId = async(req, res) => {
     try {
@@ -78,6 +87,7 @@ module.exports = {
     createClient,
     findAll,
     findById,
-    updateClient
+    updateClient,
+    deleteClient
     // findByOrderId
 }
