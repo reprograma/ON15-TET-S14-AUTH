@@ -42,7 +42,7 @@ Esse projeto foi construído utilizando a arquitetura MVC, acrônimo para Model-
 
 </div>
 
-O servidor, criado dentro da pasta [reprograma-food]https://github.com/BrunaCelestino/ON15-TET-S13-PG-III/blob/BrunaCelestino/para-o-lar/reprograma-food), conta com a seguinte estrutura:
+O servidor, criado dentro da pasta [reprograma-food](https://github.com/BrunaCelestino/ON15-TET-S14-AUTH/tree/BrunaCelestino/para-o-lar/reprograma-food), conta com a seguinte estrutura:
 
 
 ```bash
