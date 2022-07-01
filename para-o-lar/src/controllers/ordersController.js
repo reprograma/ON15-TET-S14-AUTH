@@ -56,11 +56,20 @@ const updateOrder = async(req, res) => {
     }
 }
 
+const deleteOrder = async(req, res) => {
+    try {
+        const deletedOrder = await orderSchema.findByIdAndDelete(req.params.id)
+        res.status(200).json(deletedOrder)
+    } catch (error) {
+        console.error(error)
+    }
+}
 
 
 module.exports = {
     createOrder,
     getAllOrders,
     findById,
-    updateOrder
+    updateOrder,
+    deleteOrder
 }
