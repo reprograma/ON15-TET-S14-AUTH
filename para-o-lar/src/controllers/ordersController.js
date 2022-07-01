@@ -46,9 +46,21 @@ const findById = async(req, res) => {
     }
 }
 
+const updateOrder = async(req, res) => {
+    try {
+        const { client, description, price } = req.body
+        const updatedOrder = await orderSchema.findByIdAndUpdate(req.params.id, { client, description, price, updatedAt: new Date().toLocaleDateString() }, { new: true })
+        res.status(200).json(updatedOrder)
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+
 
 module.exports = {
     createOrder,
     getAllOrders,
-    findById
+    findById,
+    updateOrder
 }
