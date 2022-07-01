@@ -30,7 +30,7 @@ const getAllOrders = async(req, res) => {
     }
 }
 
-/* const findById = async(req, res) => {
+const findById = async(req, res) => {
     try {
         await orderSchema.findById(req.params.id).populate('client').exec((err, stores) => {
             if (err) {
@@ -44,11 +44,11 @@ const getAllOrders = async(req, res) => {
     } catch (error) {
         res.status(500).json({message: error.message})
     }
-} */
+}
 
 
 module.exports = {
     createOrder,
     getAllOrders,
-    // findById
+    findById
 }
