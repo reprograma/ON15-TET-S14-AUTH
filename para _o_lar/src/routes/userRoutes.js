@@ -16,4 +16,7 @@ router.put("/update/:id", checkAuth, controller.updateUser);
 
 router.delete("/delete/:id", controller.deleteUser);
 
+
+
+
 module.exports = router;

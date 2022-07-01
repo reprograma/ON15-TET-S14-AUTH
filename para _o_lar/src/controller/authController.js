@@ -1,4 +1,5 @@
 const UserSchema = require('../model/userSchema');
+
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -29,7 +30,7 @@ const login = (req, res) => {
             }
 
             
-            const token = jwt.sign({name: user.name}, SECRET);
+            const token = jwt.sign({name: user.name,}, SECRET);
             console.log("TOKEN CRIADO:", token);
 
             res.status(200).send({
@@ -42,6 +43,8 @@ const login = (req, res) => {
     }
 };
 
+
 module.exports = {
     login
+   
 };
