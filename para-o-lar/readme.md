@@ -106,7 +106,7 @@ Para abrir o projeto no `VSCODE`, é necessário:
     </tbody>
 </table>
 
-- Exemplo de cadastro de usuario
+### Exemplo de cadastro de usuario :
 ```bash
 {
     "name":"teste",
@@ -115,7 +115,7 @@ Para abrir o projeto no `VSCODE`, é necessário:
 }
 
 ```
-- Exemplo de  login
+### Exemplo de  login :
 ```bash
 {
     "email":"teste@gmail.com",
@@ -123,10 +123,10 @@ Para abrir o projeto no `VSCODE`, é necessário:
 }
 
 ```
-- Exemplo para as demais rotas.
-<br>
-Observação importante:é necessário informa para todas as demais rotas no Headers o seu token, para isso clique em Headers e onde está Key coloque Authorization e no VALUE coloque Bearer tokengerado.
-- Criar uma publicação
+### Exemplo para as demais rotas :
+- `Observação importante:`é necessário informa para todas as demais rotas no Headers o seu token, para isso clique em `Headers` e onde está Key coloque `Authorization` e no VALUE coloque `Bearer tokengerado`.
+
+#### Criar uma publicação
 
 ```bash
 {
@@ -134,7 +134,7 @@ Observação importante:é necessário informa para todas as demais rotas no Hea
 }
 
 ```
-- Modificar uma publicação
+#### Modificar uma publicação
 
 ```bash
 {
