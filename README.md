@@ -214,4 +214,4 @@ jwt.verify(token, SECRET, function(erro) {
   if (err) {
     return res.status(403).send('Não autorizado');
 }
-~~~
+
