@@ -26,7 +26,7 @@
 
 :heavy_check_mark: `Funcionalidade 1:` Realiza cadastrado de novos usuarios.
 
-:heavy_check_mark: `Funcionalidade 2:` Possui um sistema login que autentica e autoriza o usuario cadastrado.
+:heavy_check_mark: `Funcionalidade 2:` Possui um sistema login que autentifica e autoriza o usuario cadastrado.
 
 :heavy_check_mark: `Funcionalidade 3:` O usuario pode criar um publicação, e somente ele pode excluir ou modifica-la .
 
