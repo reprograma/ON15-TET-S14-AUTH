@@ -20,10 +20,14 @@ const login = (req, res) => {
                   message: "Login não autorizado"
               })
             }
-            const token = jwt.sign({ name: user.name }, SECRET)
+            const token = jwt.sign({ userId: user._id }, SECRET, {
+                expiresIn: "1d"
+               })
+
+               UserSchema.findByIdAndUpdate(user._id, { token })
     
             res.status(200).send({
-                message: "Login autorizado",
+                data: { email: user.email, role: user.role },
                 token
             })
         })
