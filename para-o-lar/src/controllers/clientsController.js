@@ -35,7 +35,7 @@ const findAll = async(req, res) => {
     }
 }
 
-/* const findById = async(req, res) => {
+const findById = async(req, res) => {
     try {
         await clientSchema.findById(req.params.id).exec((err, stores) => {
             if (err) {
@@ -49,7 +49,7 @@ const findAll = async(req, res) => {
     } catch (error) {
         res.status(500).json({message: error.message})
     }
-} */
+}
 
 /* const findByOrderId = async(req, res) => {
     try {
@@ -65,6 +65,6 @@ const findAll = async(req, res) => {
 module.exports = {
     createClient,
     findAll,
-    // findById,
+    findById,
     // findByOrderId
 }
