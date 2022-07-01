@@ -125,7 +125,7 @@ Para abrir o projeto no `VSCODE`, é necessário:
 ```
 - Exemplo para as demais rotas.
 <br>
-`Observação importante:`é necessário informa para todas as demais rotas no Headers o seu token, para isso clique em `Headers` e onde está Key coloque `Authorization` e no VALUE coloque `Bearer tokengerado`.
+`Observação importante: `é necessário informa para todas as demais rotas no Headers o seu token, para isso clique em `Headers` e onde está Key coloque `Authorization` e no VALUE coloque `Bearer tokengerado`.
 - Criar uma publicação
 
 ```bash
