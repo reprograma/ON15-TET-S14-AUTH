@@ -5,12 +5,12 @@ const cors = require('cors');
 require('dotenv-safe').config();
 
 const db = require('./config/database');
-// const userRoutes = require('./routes/userRoutes');
+const feiraRoutes = require('./routes/feiraRoutes');
 
 db.connect();
 
 app.use(cors());
 app.use(express.json());
-// app.use("/users", userRoutes);
+app.use("/feira", feiraRoutes);
 
 module.exports = app;
