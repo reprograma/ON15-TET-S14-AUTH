@@ -982,7 +982,7 @@ Para que fosse possível a execução desse projeto, foi necessária a utilizaç
 
 - [mongoose](https://www.npmjs.com/package/mongoose) - Mongoose é uma ferramenta de modelagem de objetos MongoDB projetada para funcionar em um ambiente assíncrono;
 
-- [bcrypt](https://www.npmjs.com/package/bcrypt) - Bcrypt é uma biblioteca que auxiliar na encriptação (hasheamento) de senhas.
+- [bcrypt](https://www.npmjs.com/package/bcrypt) - Bcrypt é uma biblioteca que auxilia na encriptação (hasheamento) de senhas.
 
 - [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken) - Jsonwebtoken implementa Json web tokens. 
    
@@ -1047,7 +1047,7 @@ Para que fosse possível a execução desse projeto, foi necessária a utilizaç
 
 ###  TESTE: 
 
-- Importe a coleção para teste deste servidor clicando [aqui]https://www.getpostman.com/collections/8bf6ca3490ea774a08db)!
+- Importe a coleção para teste deste servidor clicando [aqui](https://www.getpostman.com/collections/8bf6ca3490ea774a08db)!
 
 - Copie o link acima e, no Postman, clique em **Import** -> **Link** (cole o link) -> **Continue** -> **Import**.
 
