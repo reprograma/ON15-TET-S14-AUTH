@@ -7,11 +7,11 @@ app.use(cors());
 require('dotenv-safe').config();
 app.use(express.json());
 
-const db = require('./config/database');
+const db = require('./src/config/database');
 db.connect();
 
-const storeRoutes = require('./routes/storeRoutes');
+const clientRoutes = require('./src/routes/clientsRouts');
 
-app.use("/store", storeRoutes);
+app.use("/client", clientRoutes);
 
 module.exports = app;
