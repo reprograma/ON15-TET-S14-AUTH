@@ -7,7 +7,7 @@ exports.checkAuth = (req, res, next) => {
     console.log("AUTH HEADER", authHeader)
     const token = authHeader.split(' ')[1];
     console.log("TOKEN", token)
-    
+
     if (!token) {
       return res.status(401).send("Erro no header")
     }
@@ -20,10 +20,10 @@ exports.checkAuth = (req, res, next) => {
         });
 
         next();
-          
+
     } catch(err) {
         console.error(err);
     }
 }
 
-// module.exports = { checkAuth }
+module.exports = { checkAuth }
