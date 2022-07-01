@@ -1,29 +1,29 @@
-// const clientSchema = require("../models/clientsSchema")
+const clientSchema = require("../models/clientsSchema")
 
-// const createClient = async(req, res) => {
-//     const { name, socialName, address, number, phone, referencePoint, orders, store } = req.body
-//     if(!req.body.name || !req.body.address){
-//         return res.status(404).send({
-//             "message": "Campo obrigatório",
-//             "satusCode": 404
-//         })        
-//     }
-//     const clientExists = await clientSchema.findOne({ phone })
-//     if(clientExists){
-//         return res.status(404).send({
-//             "message": "Cliente já cadastrado",
-//             "satusCode": 404
-//         })
-//     }
-//     try {
-//         const newClient = new clientSchema ({ name, socialName, address, number, phone, referencePoint, orders, store, createdAt: new Date() })        
-//         const savedClient = await newClient.save()        
-//         res.status(201).json(savedClient)        
-//     } catch (error) {
-//         console.error(error)
-//         res.status(500).json({message: error.message})
-//     }
-// }
+const createClient = async(req, res) => {
+    const { name, socialName, address, number, phone, referencePoint, orders, store } = req.body
+    if(!req.body.name || !req.body.address){
+        return res.status(404).send({
+            "message": "Campo obrigatório",
+            "satusCode": 404
+        })        
+    }
+    const clientExists = await clientSchema.findOne({ phone })
+    if(clientExists){
+        return res.status(404).send({
+            "message": "Cliente já cadastrado",
+            "satusCode": 404
+        })
+    }
+    try {
+        const newClient = new clientSchema ({ name, socialName, address, number, phone, referencePoint, orders, store, createdAt: new Date() })        
+        const savedClient = await newClient.save()        
+        res.status(201).json(savedClient)        
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({message: error.message})
+    }
+}
 
 /* const findAll = async(req, res) => {
     try {
@@ -62,9 +62,9 @@
  */
 
 
-// module.exports = {
-//     createClient,
+module.exports = {
+    createClient,
     // findAll,
     // findById,
     // findByOrderId
-// }
+}
