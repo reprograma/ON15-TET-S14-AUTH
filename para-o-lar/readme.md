@@ -52,7 +52,7 @@ Para abrir o projeto no `VSCODE`, é necessário:
 - Ir na barra de menus e selecionar a opção `file` ou `arquivo`;
 - Selecione a opção `open folder ...` e procure a pasta onde está o projeto;
 - Por fim clique em `OK`.
-- Entre na pasta  `ON15-TET-S14-AUTH` e depois na pasta `para-o-lar`, ao entrar na pasta execute o comando npm i instale todas as depedencias necessarias para rodar o projeto.
+- Entre na pasta  `ON15-TET-S14-AUTH` e depois na pasta `para-o-lar`, ao entrar na pasta execute o comando `npm install` e  instale todas as depedencias necessarias para rodar o projeto.
 
  ``` bash
 ├── ON15-TET-S14-AUTH
