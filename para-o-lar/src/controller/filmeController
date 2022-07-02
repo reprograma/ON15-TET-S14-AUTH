@@ -1,0 +1,114 @@
+const FilmeSchema = require('../models/filmeSchema')
+
+const findAllfilmes = async (request, response) => {
+    try {
+
+     const allFilmes = await FilmeSchema.find() // find em todos os filmes
+        
+     response.status(200).json(allFilmes)
+ 
+    } catch (error) {
+      response.status(500).json({ message: error.message})
+    }
+ }
+
+const createFilmes = async (request, response) => {
+      
+    try {
+        if(!request.body.title || !request.body.description)
+           {
+            response.status(404).send({
+               "message": "Favor preencher os campos obrigatórios",
+               "statusCode": 404
+            })
+       }
+       const newFilme = new FilmeSchema({
+            
+        title: request.body.title,
+        description: request.body.description,
+        genre: request.body.genre,
+        releaseYear: request.body.releaseYear,
+        country:request.body.country,
+        language: request.body.language,
+        actors: request.body.actors,
+        director: request.body.director,
+        createdAt: new Date() 
+      
+    })
+
+    const savedFilme = await newFilme.save()
+    
+   
+    response.status(201).json({
+        message: "O filme foi adicionado com sucesso no banco de dados!",
+        savedFilme        
+    })
+
+} catch (error) {
+    response.status(500).json({ message: error.message})
+    }
+}
+
+const updateFilme = async (request, response) => {
+  try {
+    
+      const findFilme = await FilmeSchema.findById(request.params.id)
+
+      if(!findFilme){
+          res.status(404).send({
+              "message": "Filme não encontrado no banco de dados :( ",
+              "statusCode": 404
+          })
+      }
+
+     
+          findFilme.title = request.body.title || findFilme.title
+          findFilme.description = request.body.description || findFilme.description
+          findFilme.genre = request.body.genre || findFilme.genre
+          findFilme.releaseYear = request.body.releaseYear || findFilme.releaseYear
+          findFilme.country = request.body.country|| findFilme.country
+          findFilme.language =  request.body.language || findFilme.language
+          findFilme.actors = request.body.actors || findFilme.actors
+          findFilme.director = request.body.director || findFilme.director
+         
+          
+          const  savedFilme = await findFilme.save()
+     
+        response.status(200).send({
+            "message": "O filme foi atualizado com sucesso no banco de dados",
+            savedFilme
+        })
+
+    } catch(err) {
+        console.error(err)
+    }
+    
+}
+const deleteFilme = async (request, response) => {
+  try {
+     
+      const findFilme = await FilmeSchema.findById(request.params.id)
+
+    
+      const deletedFilme = await findFilme.remove()
+     
+      response.status(200).send({
+          "message": "O Filme foi deletado com sucesso do banco de dados :) ",
+          findFilme
+      })
+
+  } catch(err) {
+      console.error(err)
+  }
+  
+}
+
+module.exports = {
+  findAllfilmes,
+  createFilmes,
+  updateFilme,
+  deleteFilme    
+}
+
+
+
