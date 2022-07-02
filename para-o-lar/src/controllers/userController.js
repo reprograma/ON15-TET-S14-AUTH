@@ -114,9 +114,32 @@ const updatePassword = async (req, res) => {
     res.status(200).send(updatedUser)
 }
 
+const deleteUser = async (req, res) => {
+    const authHeader = req.get('Authorization')
+    const token = authHeader.split(' ')[1]
+
+    if(!token) {
+        return res.status(401).send({"message": "Erro no header"})
+    }
+
+    jwt.verify(token, SECRET, function(erro) {
+        if (erro) {
+          return res.status(403).send('Não autorizado');
+    }
+    })
+
+    const user = await UserSchema.findByIdAndDelete(req.params.id)
+    if(!user) {
+        return res.status(404).send({ message: "Usuário não encontrado" })
+    }
+    await user.remove()
+    res.status(200).send({ message: "Usuário deletado", user })
+}
+
 module.exports = {
     createUser,
     getAll,
     updateUser,
-    updatePassword
+    updatePassword,
+    deleteUser
 }
