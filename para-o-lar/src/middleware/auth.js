@@ -23,5 +23,3 @@ exports.checkAuth = (req, res, next) => {
         console.error(err);
     }
 }
-
-module.exports = { checkAuth }
