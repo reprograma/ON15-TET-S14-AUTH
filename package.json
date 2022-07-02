@@ -1,7 +1,7 @@
 {
   "name": "projeto-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Turma Online Todas em Tech - Back-end | Semana 14: Aplicar Autenticação // Conhecer Autorização: JWT",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,11 +12,23 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "dotenv-safe": "^8.2.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.12"
   },
   "devDependencies": {
     "nodemon": "^2.0.14"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LuizaTempobono/ON15-TET-S14-AUTH.git"
+  },
+  "bugs": {
+    "url": "https://github.com/LuizaTempobono/ON15-TET-S14-AUTH/issues"
+  },
+  "homepage": "https://github.com/LuizaTempobono/ON15-TET-S14-AUTH#readme"
 }
