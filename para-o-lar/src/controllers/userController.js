@@ -32,8 +32,30 @@ const createUser = async (req, res) => {
     }
 }
 
+const getAll = async (req, res) => {
+    const authHeader = req.get('Authorization')
+    const token = authHeader.split(' ')[1]
+
+    if(!token) {
+        return res.status(401).send({"message": "Erro no header"})
+    }
+
+    jwt.verify(token, SECRET, function(erro) {
+        if (erro) {
+          return res.status(403).send('Não autorizado');
+    }
+    })
+
+    UserSchema.find(function (err, users) {
+        if(err) {
+          res.status(500).send({ message: err.message })
+        }
+          res.status(200).send(users)
+    }) 
+}
+
 
 module.exports = {
     createUser,
-    // getAll
+    getAll
 }
