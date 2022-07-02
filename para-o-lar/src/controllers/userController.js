@@ -54,8 +54,35 @@ const getAll = async (req, res) => {
     }) 
 }
 
+const updateUser = async (req, res) => {
+    const authHeader = req.get('Authorization')
+    const token = authHeader.split(' ')[1]
+
+    if(!token) {
+        return res.status(401).send({"message": "Erro no header"})
+    }
+
+    jwt.verify(token, SECRET, function(erro) {
+        if (erro) {
+          return res.status(403).send('Não autorizado');
+    }
+    })
+
+    const user = await UserSchema.findById(req.params.id)
+    if(!user) {
+        return res.status(404).send({ message: "Usuário não encontrado" })
+    }
+
+    user.name = req.body.name || user.name
+    user.email = req.body.email || user.email
+    
+    const updatedUser = await user.save()
+    res.status(200).send(updatedUser)
+}
+
 
 module.exports = {
     createUser,
-    getAll
+    getAll,
+    updateUser
 }
