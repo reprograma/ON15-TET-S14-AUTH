@@ -12,10 +12,12 @@ db.connect();
 
 const clientRoutes = require('./src/routes/clientsRouts');
 const ordersRoutes = require('./src/routes/ordersRouts')
+const userRoutes = require('./src/routes/userRoutes')
 
 
 app.use("/client", clientRoutes);
-app.use("/order", ordersRoutes)
+app.use("/order", ordersRoutes);
+app.use("/user", userRoutes);
 
 
 module.exports = app;
