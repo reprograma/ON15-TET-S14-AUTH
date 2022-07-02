@@ -1,0 +1,78 @@
+ANOTAÇÕES DA AULA
+
+Instanciar -> tornar disponível uma informação externa no nosso projeto.
+
+Para utilizar o dev do script -> npm run dev - No terminal
+
+Passo a passo:
+
+- Começamos preenchendo o database no SRC. 
+- Depois, fomos para o .env e entender o .envexample
+- Em seguida, inserimos o link do nosso Atlas, mudando a descrição depois do /
+- o .env example serve para entendermos o ambiente em que o projeto foi montado;
+- No server = process.env.PORT - relacionado a porta em que o servidor está rodando
+
+
+NO SCHEMA >
+
+O required é o que é obrigatório para o arquivo.
+Por exemplo, titulo é uma informação OBRIGATÓRIA.
+
+----> Comofazer 
+
+GET ALL
+
+Leitura de todas as rotas cadastradas no meu banco de dados
+
+VERBO HTTP
+
+(GET)
+
+DEFINIR UMA ROTA: 
+/all 
+
+src controller
+----> Fica a lógica do que queremos fazer 
+
+requere o schema pois ele é oesqueleto das informações
+
+- required do schema 
+
+- dentro de uma função anônima, recebo a requisição e a resposta
+- envio as informações de todas as notas do meu banco de dados
+- exportar essa função para acessar as notas
+
+src routes
+
+- importar o express e definir o router 
+
+- required do arquivo do controller 
+- conectar a função criada com a rota criada 
+
+src app
+
+descomentar linhas sobre rotas 
+
+testar no postman
+
+
+PASSO A PASSO
+
+- IR NO ARQUIVO DE ROTAS, depois de criada a rota, copiar o nome
+e fazer a const na pasta controller 
+
+
+
+
+VERBOS HTTP 
+CREATE ==> POST 
+READ => GET 
+UPDATE => PUT, PATCH 
+DELETE => DELETE 
+
+
+VERBO HTTP: 
+{PATCH} ou {PUT}?
+
+
+
