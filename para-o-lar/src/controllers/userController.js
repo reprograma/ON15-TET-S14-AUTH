@@ -81,8 +81,42 @@ const updateUser = async (req, res) => {
 }
 
 
+const updatePassword = async (req, res) => {
+    const authHeader = req.get('Authorization')
+    const token = authHeader.split(' ')[1]
+
+    if(!token) {
+        return res.status(401).send({"message": "Erro no header"})
+    }
+
+    jwt.verify(token, SECRET, function(erro) {
+        if (erro) {
+          return res.status(403).send('Não autorizado');
+    }
+    })
+
+    const user = await UserSchema.findById(req.params.id)
+    if(!user) {
+        return res.status(404).send({ message: "Usuário não encontrado" })
+    }
+
+    const isValidPassword = bcrypt.compareSync(req.body.password, user.password)
+    if(!isValidPassword) {
+        return res.status(401).send({ message: "Senha inválida" })
+    }
+
+    const hashedPassword = bcrypt.hashSync(req.body.newPassword, 10);
+    req.body.newPassword = hashedPassword      
+
+    user.password = req.body.newPassword
+
+    const updatedUser = await user.save()
+    res.status(200).send(updatedUser)
+}
+
 module.exports = {
     createUser,
     getAll,
-    updateUser
+    updateUser,
+    updatePassword
 }

@@ -8,6 +8,7 @@ router.post("/create", controller.createUser);
 router.post("/login", authController.login);
 router.get("/all", controller.getAll);
 router.put("/update/:id", controller.updateUser);
+router.put("/updatePassword/:id", controller.updatePassword);
 
 
 
