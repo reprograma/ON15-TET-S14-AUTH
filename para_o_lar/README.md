@@ -1,5 +1,3 @@
-# <div align = "center"> ON15-TET-S12-BD </div>
-
 <div align = "center">
     
 Turma Online Todas em Tech - Back-end | Semana 14: **Aplicar Autenticação // Conhecer Autorização: JWT - CRUD com MongoDB**.
