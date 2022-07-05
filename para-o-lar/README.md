@@ -6,7 +6,7 @@
     </p>
 </div>
 
-<div align="justify"> 
+<div align="center"> 
 
 ### Projeto da Semana 14 da {Reprograma}, para realizar autentização em cadastros na API. 
 </div>
