@@ -1,7 +1,7 @@
 const clientSchema = require("../models/clientsSchema")
 
 const createClient = async(req, res) => {
-    const { name, socialName, address, number, phone, referencePoint, orders, store } = req.body
+    const { name, socialName, address, number, phone, referencePoint } = req.body
     if(!req.body.name || !req.body.address){
         return res.status(404).send({
             "message": "Campo obrigatório",
@@ -16,7 +16,7 @@ const createClient = async(req, res) => {
         })
     }
     try {
-        const newClient = new clientSchema ({ name, socialName, address, number, phone, referencePoint, orders, store, createdAt: new Date() })        
+        const newClient = new clientSchema ({ name, socialName, address, number, phone, referencePoint, createdAt: new Date() })
         const savedClient = await newClient.save()        
         res.status(201).json(savedClient)        
     } catch (error) {
@@ -37,14 +37,18 @@ const findAll = async(req, res) => {
 
 const findById = async(req, res) => {
     try {
-        await clientSchema.findById(req.params.id).exec((err, stores) => {
+        await clientSchema.findById(req.params.id, {})
+        .exec((err, client) => {
             if (err) {
-              return res.status(400).send({ message: `${err.message} - Id informado está fora do padrão.` });
-            } else if (stores == null) {
+              return res.status(400).send({ message: `${err.message} - Id informado está fora do padrão.` }); 
+            } else if (client == null) {
               return res.status(404).send('Id não encontrado na base de dados');
-            } else {
-              return res.status(200).send(stores);
+            } else if (client.socialName != ""){
+                client.name = client.socialName
+                client.socialName = unde
+              return res.status(200).send(client);
             }
+            return res.status(200).send(client);
           })
     } catch (error) {
         res.status(500).json({message: error.message})
