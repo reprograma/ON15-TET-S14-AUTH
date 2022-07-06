@@ -45,7 +45,7 @@ const findById = async(req, res) => {
               return res.status(404).send('Id não encontrado na base de dados');
             } else if (client.socialName != ""){
                 client.name = client.socialName
-                client.socialName = unde
+                client.socialName = undefined
               return res.status(200).send(client);
             }
             return res.status(200).send(client);
