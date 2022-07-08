@@ -58,7 +58,7 @@ const deleteBusiness = async (req,res) => {
         const deletedBusiness = await FeiraSchema.findByIdAndDelete(req.params.id)
 
         res.status(200).send({
-            "message": "Nota deletada com sucesso",
+            "message": "Negócio deletado com sucesso",
             deletedBusiness
         })
     } catch(err) {
