@@ -12,5 +12,6 @@ router.post("/register", controller.registerBusiness);
 
 router.post('/login', authController.login);
 
+router.delete("/delete/:id", controller.deleteBusiness);
 
 module.exports = router;
